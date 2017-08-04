@@ -1,0 +1,32 @@
+#main-header h1{
+	text-align: center;
+	color: #FFFFFF;
+	background-color: #AD1A0B;
+	margin-top: 0px;
+}
+.form-group.mail{
+	position: relative;
+	margin-top: 100px;
+	margin-bottom: 20px;
+}
+.form-group.pass{
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.container btn-default{
+	position: center;
+}
+
+.row-centered{
+	text-align: center;
+}
+
+.col-centered{
+	display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}

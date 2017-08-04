@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style-home.css">
+	<title>Home</title>
+</head>
+
+<body>
+  <div class="icon-bar">
+    <div id="mySidenav" class="sidenav">
+      <div class="info container-fluid">
+        <div class="list-group">
+          <h4>--nama--</h4>
+          <h5>--no rekening--</h5>
+        </div>
+      </div>
+    <span href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</span>
+      <a href="#" class="side table"><span class="glyphicon glyphicon-home"></span> Home</a>
+      <a href="#" class="side table"><span class="glyphicon glyphicon-duplicate"></span> History</a>
+      <a href="#" class="side table"><span class="glyphicon glyphicon-envelope"></span> Inbox</a>
+      <a href="#" class="side table"><span class="glyphicon glyphicon-wrench"></span> Settings</a>
+      <a href="#" class="side table"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+    </div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3">
+          <span style="font-size:30px;cursor:pointer" onclick="openNav()">
+            <span class="glyphicon glyphicon-menu-hamburger" style="color:white;top: 4px;padding-top:5%;"></span>
+          </span>
+        </div>
+        <div class="col-xs-6">
+            <h1 style="font:Roboto;font-size:31px;text-align:center;color:#ffffff;"><b>HOME</b></h1>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<div style="padding-top:3%;" class="container-fluid">
+ <div class="row row-centered">
+    <section class="col-centered col-xs-10 col-sm-10 col-md-8 col-lg-6" style="float: none; margin: 0 auto;">
+      <div class="jumbotron vertical-center">
+        <h3 style="text-align:center;">--Saldo--</h3>      
+      </div>   
+
+    <h3>History</h3>
+      <table class="table table-striped">
+      
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Transaksi</th>
+              <th>Debit</th>
+              <th>Kredit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DD/MM</td>
+              <td>nama</td>
+              <td>IDR ...</td>
+              <td>IDR ...</td>
+            </tr>
+            <tr>
+              <td>DD/MM</td>
+              <td>nama</td>
+              <td>IDR ...</td>
+              <td>IDR ...</td>
+            </tr>
+            <tr>
+              <td>DD/MM</td>
+              <td>nama</td>
+              <td>IDR ...</td>
+              <td>IDR ...</td>
+            </tr>
+          </tbody>
+        </table>
+      </table>
+    </section>
+  </div>
+</div>
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>	
+<script src="js/script.js"></script>
+</body>
+</html>

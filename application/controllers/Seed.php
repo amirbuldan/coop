@@ -109,7 +109,8 @@ class Seed extends MY_Controller {
             $idTrans[$i] = $this->faker->unique()->creditCardNumber;
             $nom[$i] = $this->faker->randomElement($mn);
             $dataRek = $this->_get_rekening_data($dUser[0]->id_user);
-            $jenis_trans = $this->faker->randomElement(array('kredit','debit'));
+            // $jenis_trans = $this->faker->randomElement(array('kredit','debit'));
+            $jenis_trans = "kredit";
 
             $d[$i] = array(
                 'id_transaksi' => $idTrans[$i],

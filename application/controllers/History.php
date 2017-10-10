@@ -21,9 +21,9 @@ class History extends MY_Controller
             'd.rek_asal' =>$data_user[0]->no_rekening
             );
         $history = $this->h_get_all_trans($where);
-        echo "<pre>";
-        print_r($history);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($history);
+        // echo "</pre>";
         $this->template->set_layout('default')
             ->build('/partials/history/main', 
                 array(

@@ -87,11 +87,6 @@ class Simulasi extends MY_Controller
         redirect('/inbox', 'refresh');
     }
 
-    function _save_data_transfer()
-    {
-        
-    }
-
     function _send_message($data)
     {
 
@@ -101,7 +96,7 @@ class Simulasi extends MY_Controller
             <p>$data[tgl_transfer]</p>
             <p>Ke $data[tujuan_transfer]</p>
             <p>Rp. " .number_format($data['jumlah_transfer'], 2, ',', '.')
-            ."</p><p>Berita</p>"."<p>Ref : $data[id_trans]</p>";
+            ."<p>Ref : $data[id_trans]</p>";
         
             $data = array(
                 'id_message' => '',

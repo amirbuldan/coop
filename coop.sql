@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Agu 2017 pada 03.14
+-- Generation Time: 10 Okt 2017 pada 05.50
 -- Versi Server: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -23,6 +23,49 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `tbl_detailtransaksi`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_detailtransaksi` (
+  `id_trans` varchar(100) NOT NULL,
+  `rek_asal` varchar(100) NOT NULL,
+  `rek_tujuan` varchar(100) NOT NULL,
+  `saldo_awal` double NOT NULL,
+  `saldo_akhir` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_detailtransaksi`
+--
+
+INSERT INTO `tbl_detailtransaksi` (`id_trans`, `rek_asal`, `rek_tujuan`, `saldo_awal`, `saldo_akhir`) VALUES
+('4024007123306', '1234567890', '00966072497', 1300000, 1100000),
+('4916612682867', '1234567890', '653306446604', 1000000, 1300000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_headertransaksi`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_headertransaksi` (
+  `id_transaksi` varchar(100) NOT NULL,
+  `jenis` enum('debit','kredit') NOT NULL,
+  `jumlah_transaksi` double NOT NULL,
+  `tgl_transaksi` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_headertransaksi`
+--
+
+INSERT INTO `tbl_headertransaksi` (`id_transaksi`, `jenis`, `jumlah_transaksi`, `tgl_transaksi`) VALUES
+('4024007123306', 'debit', 200000, '2017-10-10 10:49:17'),
+('4916612682867', 'kredit', 300000, '2017-10-10 10:48:33');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tbl_messages`
 --
 
@@ -32,28 +75,14 @@ CREATE TABLE IF NOT EXISTS `tbl_messages` (
   `judul` varchar(100) NOT NULL,
   `isi` varchar(200) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tbl_messages`
 --
 
 INSERT INTO `tbl_messages` (`id_message`, `id_nasabah`, `judul`, `isi`, `created_at`) VALUES
-(1, '1234567890', 'Doloribus quo qui veritatis totam laborum vel maxime sequi.', 'Et nobis maxime soluta quia autem libero quia. Corrupti et est est est rerum reiciendis porro. Et fuga sit sit accusantium iste sit. Nesciunt et quam accusantium repudiandae.', '2017-07-12 16:13:19'),
-(2, '1234567890', 'Voluptatem quae velit aut dolorem delectus dolore.', 'Vel et voluptatum aut vitae explicabo. Excepturi dolor tenetur reprehenderit quia repellendus. Dolorem doloremque nam praesentium pariatur esse. Iste iusto commodi ut repudiandae.', '2017-07-18 05:57:20'),
-(3, '1234567890', 'Voluptate quidem molestiae amet ea.', 'Omnis voluptatem at provident quia cum consequuntur recusandae. Aspernatur atque optio eos fuga adipisci. Officiis sit ipsam veritatis aut.', '2017-07-06 14:19:53'),
-(4, '1234567890', 'Consequuntur et dolorem sed.', 'Ullam occaecati neque et nihil. Reprehenderit odit deserunt dicta minus. Nobis veritatis laboriosam accusamus consequatur fugiat.', '2017-06-30 06:51:08'),
-(5, '1234567890', 'Hic quaerat natus voluptatem.', 'Eligendi voluptate corrupti unde quisquam rerum rerum dolorem facilis. Accusamus aliquam cumque dolore maxime voluptas. Amet inventore dolore temporibus nobis in accusantium id nulla.', '2017-07-14 21:17:22'),
-(6, '1234567890', 'Ea aut sit totam recusandae et exercitationem.', 'Facilis expedita necessitatibus accusamus exercitationem praesentium. Et et placeat ab ad. Molestiae et rem voluptatibus cupiditate laborum aliquid. Nihil corrupti cum aut mollitia dolore.', '2017-07-22 03:53:33'),
-(7, '1234567890', 'Facilis harum ullam eum numquam sed ut.', 'Soluta accusamus libero ducimus provident similique doloribus neque est. Sit placeat laborum sed mollitia. Consequatur possimus pariatur exercitationem facere dignissimos veniam.', '2017-07-08 11:31:11'),
-(8, '1234567890', 'Quas neque distinctio neque ratione perspiciatis esse sed rem.', 'Blanditiis eveniet aliquam similique quaerat. Voluptatibus quisquam molestiae corporis ut qui nesciunt. Tenetur corporis odit voluptas iste.', '2017-07-23 16:59:01'),
-(9, '1234567890', 'Sint eveniet velit iusto exercitationem.', 'Pariatur dolorem quis aliquid sapiente. Ad quia consectetur eligendi. Cupiditate debitis magnam architecto aliquam ullam id. Aut rerum excepturi nostrum quo suscipit minima.', '2017-07-09 15:12:08'),
-(10, '1234567890', 'Sapiente et et qui libero fugit facilis in reprehenderit.', 'Cupiditate eum unde asperiores eum alias. Quam vel quasi placeat distinctio. Nulla quaerat optio consequuntur asperiores ex sed quis.', '2017-07-13 02:08:30'),
-(11, '1234567890', 'Ut corrupti fugit error nulla.', 'Provident quas dolores inventore ea corrupti error vel. Qui ut et sit recusandae fugit quia suscipit. At accusantium et voluptas et ut vel.', '2017-07-11 14:11:31'),
-(12, '1234567890', 'Nostrum nulla aspernatur aut.', 'Possimus ducimus sit officia laboriosam ipsam. Animi eos labore consequatur voluptas repellat veniam. Ipsa voluptatem iste maiores aut officiis magni porro.', '2017-07-15 20:20:30'),
-(13, '1234567890', 'Ipsam vel tempore quod.', 'Occaecati eum quia doloremque quis sit commodi consectetur. Iusto numquam quo nisi quod similique.', '2017-07-16 22:28:49'),
-(14, '1234567890', 'Voluptatibus eos et qui facilis aut.', 'Aperiam voluptate molestiae distinctio corporis dolores voluptatum natus. Quam at placeat ducimus. Hic velit qui unde. Distinctio sequi eveniet ad repudiandae dolores debitis.', '2017-07-16 19:56:58'),
-(15, '1234567890', 'Corrupti est fuga quia veniam et architecto.', 'Sit eveniet vitae voluptatem. Accusantium sit tempore impedit et laborum iusto. A tenetur a totam et. Doloremque esse libero qui.', '2017-07-15 00:15:30');
+(40, '1234567890', 'm-Transfer', '\r\n            <p>m-Transfer</p>\r\n            <p>BERHASIL</p>\r\n            <p>2017-10-10 10:49:17</p>\r\n            <p>Ke 00966072497</p>\r\n            <p>Rp. 200.000,00<p>Ref : 4024007123306</p>', '2017-10-10 03:49:17');
 
 -- --------------------------------------------------------
 
@@ -73,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `tbl_rekening` (
 
 INSERT INTO `tbl_rekening` (`no_rekening`, `id_user`, `saldo`) VALUES
 ('00966072497', '2', 5000000),
-('1234567890', '3', 1000000);
+('1234567890', '3', 1100000);
 
 -- --------------------------------------------------------
 
@@ -429,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 
 INSERT INTO `tbl_user` (`id_user`, `username`, `password`, `nama`, `id_number`, `alamat`, `email`, `TTL`) VALUES
 (2, 'johndoe', 'e58408063b13a2ea53de9887bf8852cdb443b1aa24dafb21eacc08c6a50a583ac9b08823e2775e1dcd0b688287147e6ec994091226a47b65f9a57d00ac315659bsa8srvJwR9v0LzOrflVtCx9xKFtfVs=', 'john doe', 'USR002', 'maxico', 'johndoe@example.com', '1985-05-23'),
-(3, 'amirbuldan', '9d92ee82adc45ea8d7974ad666459b4d4372483e2b4b2b542c19462fb7e6fb7b1e8c8ef88c26999619647b3cbfdf60ed906e8e32ebd7f6aa64e4865ff7bb9128pXQD18lxrzayQjvn8hr4In9VpxgT1+Mrg+o=', 'amir buldan', 'USR003', 'maxico', 'amirbuldan@example.com', '1985-05-23');
+(3, 'dimas', 'bc9d1c8572812924acd48e83467118dfcce0510115a44d7164feb575b0a44d3e3b865b24285c1c3e8fbec8bef076a0fd4991c5f3823036595953c64f60a555d6eYoCv4M57J5T5cN96y28zLuSA6so', 'dimas', 'USR003', 'Ciputat', 'dimas@example.com', '1995-02-01');
 
 -- --------------------------------------------------------
 
@@ -456,6 +485,18 @@ INSERT INTO `tbl_user_en` (`id_user`, `username`, `password`, `key`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tbl_detailtransaksi`
+--
+ALTER TABLE `tbl_detailtransaksi`
+  ADD PRIMARY KEY (`id_trans`);
+
+--
+-- Indexes for table `tbl_headertransaksi`
+--
+ALTER TABLE `tbl_headertransaksi`
+  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indexes for table `tbl_messages`
@@ -498,7 +539,7 @@ ALTER TABLE `tbl_user_en`
 -- AUTO_INCREMENT for table `tbl_messages`
 --
 ALTER TABLE `tbl_messages`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --

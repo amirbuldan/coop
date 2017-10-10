@@ -1,0 +1,7 @@
+1. memanggil controller dari controller lain (udah)
+2. membuat relational tabel ala laravel
+3. koneksi debet dan inbox
+4. jumlah transaksi (udah)
+5. format nominal RP.000, (sudah)
+6. change password (sudah)
+7. Alert sebelum logout

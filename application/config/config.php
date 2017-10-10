@@ -2,6 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 include_once 'vendor/autoload.php';
+
+define('EXT', '.php');
+function __autoload($class)
+{
+    if (file_exists(APPPATH."core/".strtolower($class).EXT)) {
+        include_once(APPPATH."core/".strtolower($class).EXT);
+    }
+}
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -24,7 +33,7 @@ include_once 'vendor/autoload.php';
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/coop/';
+$config['base_url'] = 'http://localhost/coops/';
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +62,7 @@ $config['index_page'] = '';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol']	= 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -184,6 +193,7 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 |
 */
 $config['enable_query_strings'] = FALSE;
+// $config['enable_query_strings'] = TRUE;
 $config['controller_trigger'] = 'c';
 $config['function_trigger'] = 'm';
 $config['directory_trigger'] = 'd';

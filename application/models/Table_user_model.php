@@ -13,7 +13,17 @@ class Table_user_model extends CI_Model {
             $data = $this->db->get($this->table);
         }
 
-        return $data->result_array();
+        return $data->result();
+    }
+
+    public function get_r_rekening($id_user)
+    {
+        $this->db->select('*')
+            ->from($this->table.' u')
+            ->join('tbl_rekening r', 'u.id_user = r.id_user', 'left')
+            ->where('u.id_user', $id_user);
+        return $this->db->get()
+            ->result();
     }
 
     public function insert($data)

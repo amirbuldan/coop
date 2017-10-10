@@ -1,8 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-
-
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
@@ -60,7 +57,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database', 'session', 'encryption', 'encrypt');
+$autoload['libraries'] = array('database', 'session', 'template', 'encryption', 'encrypt');
 
 /*
 | -------------------------------------------------------------------
@@ -105,7 +102,7 @@ $autoload['helper'] = array('url', 'date');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('');
+$autoload['config'] = array();
 
 /*
 | -------------------------------------------------------------------

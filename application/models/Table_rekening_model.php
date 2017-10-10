@@ -26,6 +26,12 @@ class Table_rekening_model extends CI_Model {
         $this->db->insert('tbl_rekening', $data);
     }
 
+    public function update($noRek, $data)
+    {
+        $this->db->where('no_rekening', $noRek) ;
+        $this->db->update('tbl_rekening', $data);
+    }
+
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lTable_rekening_model.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Table_rekening_model/:application/models/${1/(.+)/lTable_rekening_model.php/}} */

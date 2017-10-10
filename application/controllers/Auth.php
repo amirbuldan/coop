@@ -27,10 +27,10 @@ class Auth extends CI_Controller {
 
         $chk = $this->tbl_user->get($data);
 
-        if ($this->decrypt($chk[0]['password']) == $password) {
+        if ($this->decrypt($chk[0]->password) == $password) {
 
             $array = array(
-                'username' => $chk[0]['username']
+                'username' => $chk[0]->username
             );
             $this->session->set_userdata( $array );
             redirect('','refresh');

@@ -34,6 +34,25 @@ class Table_transaksi_model extends CI_Model {
         return $query->result();
 
     }
+
+    public function sorting_history_transaksi($date)
+    {
+        if ($date['date_awal'] == null) {
+            $this->db->where('tanggal_transaksi <=', DATE($date['date_akhir']) );
+        }
+        elseif ($date['date_akhir'] == null) {
+            $this->db->where('tanggal_transaksi >=', DATE($date['date_awal']) );
+        }
+        else {
+            $this->db->where('tanggal_transaksi >=', DATE($date['date_awal']) );
+            $this->db->where('tanggal_transaksi <=', DATE($date['date_akhir']) );
+            
+            // $this->db->where("tanggal_transaksi BETWEEN $date[date_awal] AND $date[date_akhir]");
+        }
+        $this->db->order_by('tanggal_transaksi', 'desc');
+
+        return $this->db->get($this->table)->result();
+    }
 }
 /* End of file ${TM_FILENAME:${1/(.+)/lTable_transaksi_model.php/}} */
 /* Location: ./${TM_FILEPATH/.+((?:application).+)/Table_transaksi_model/:application/models/${1/(.+)/lTable_transaksi_model.php/}} */

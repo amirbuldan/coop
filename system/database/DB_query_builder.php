@@ -92,6 +92,7 @@ abstract class CI_DB_query_builder extends CI_DB_driver {
 	 * @var	array
 	 */
 	protected $qb_join			= array();
+	// public $qb_join			= array();
 
 	/**
 	 * QB WHERE data

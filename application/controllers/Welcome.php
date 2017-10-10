@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,6 +20,17 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		echo $this->encrypt("buldan");
+		$d = $this->_get_user_data();
+		$data = $this->_get_rekening_user($d[0]['id_user']);
+		echo "<pre>";
+		echo print_r($data);
+		// foreach ($data as $d) {
+		// 	echo $d->password;
+		// }
+		echo "</pre>";
 		$this->load->view('welcome_message');
 	}
+
+	
 }

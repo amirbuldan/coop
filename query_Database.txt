@@ -1,0 +1,34 @@
+query sum
+
+SELECT 
+	SUM(jumlah_transaksi) AS total_trans
+FROM 
+	`tbl_headertransaksi` 
+JOIN `tbl_detailtransaksi`
+ON tbl_headertransaksi.id_transaksi = tbl_detailtransaksi.id_transaksi
+WHERE tbl_detailtransaksi.rek_asal = '1234567890' AND tbl_headertransaksi.jenis = 'kredit'
+
+
+query join
+
+SELECT 
+	*
+FROM 
+	`tbl_headertransaksi` 
+JOIN `tbl_detailtransaksi`
+ON tbl_headertransaksi.id_transaksi = tbl_detailtransaksi.id_transaksi
+WHERE tbl_detailtransaksi.rek_asal = '1234567890' AND tbl_headertransaksi.jenis = 'debit'
+
+query untuk mendapatkan sum dari hasil join
+SELECT 
+	SUM(jumlah_transaksi) AS total_trans
+FROM 
+	(
+	SELECT 
+	*
+FROM 
+	`tbl_headertransaksi` 
+JOIN `tbl_detailtransaksi`
+USING (id_transaksi)
+WHERE tbl_detailtransaksi.rek_asal = '1234567890' AND tbl_headertransaksi.jenis = 'kredit'    
+) AS T

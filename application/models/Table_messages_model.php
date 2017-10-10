@@ -10,7 +10,11 @@ class Table_messages_model extends CI_Model {
     }
     public function get_messages($where)
     {
-        $msg = $this->db->get_where($this->table, $where);
+        
+        $msg = $this->db->where($where)
+            ->order_by('id_message', 'DESC')
+            ->get($this->table);
+        
         return $msg->result();
     }
 }

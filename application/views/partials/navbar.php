@@ -11,7 +11,7 @@
 	<a href="<?= base_url('history');?>" class="side table"><span class="glyphicon glyphicon-duplicate"></span> History</a>
 	<a href="<?= base_url('inbox');?>" class="side table"><span class="glyphicon glyphicon-envelope"></span> Inbox</a>
 	<a href="<?= base_url('setting');?>" class="side table"><span class="glyphicon glyphicon-wrench"></span> Settings</a>
-	<a href="#" data-href="<?= base_url('auth/logout');?>" class="side table" data-toggle="modal" data-target="#modal-confirm"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+	<a href="<?= base_url('auth/logout');?>" class="side table"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
     </div>
     <div class="container-fluid">
     <div class="row">
@@ -27,26 +27,6 @@
     </div>
     </div>
 
-<div class="modal fade" id="modal-confirm" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-danger btn-ok">logout</a>
-        </div>
-      </div>
-      
-    </div>
-  </div>
 
 <script>
 function openNav() {
@@ -57,10 +37,4 @@ function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
 
-function confirm_logout() {
-    confirm("Anda yakin ingin keluar?");
-}
-$('#modal-confirm').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
 </script>

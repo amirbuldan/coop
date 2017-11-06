@@ -21,11 +21,7 @@ class History extends MY_Controller
         $where = array(
             'rek_asal' =>$data_user[0]->no_rekening
             );
-
         $history = $this->tbl_vtransaksi->v_get($where);
-        // echo "<pre>";
-        // print_r($history);
-        // echo "</pre>";
         $this->template->set_layout('default')
             ->build('/partials/history/main',
                 array(
@@ -58,41 +54,22 @@ class History extends MY_Controller
             redirect(base_url('history'));
         }
         else {
-            echo $_GET['ts'];
-            echo $_GET['te'];
-
             $date = array(
                 'date_awal' => $_GET['ts'],
                 'date_akhir' => $_GET['te']
                 );
 
             if ($date['date_awal'] == null) {
-                // $where = array(
-                //     'tanggal_transaksi <=' => DATE($date['date_akhir'])
-                //     );
                 $where['DATE(tgl_transaksi) <='] = $date['date_akhir'];
             }
             elseif ($date['date_akhir'] == null) {
-                // $where = array(
-                //     'tanggal_transaksi >=' => DATE($date['date_awal'])
-                //     );
                 $where['DATE(tgl_transaksi) >='] = $date['date_awal'];
             }
             else {
-                // $where = array(
-                //     'tanggal_transaksi >=', DATE($date['date_awal']),
-                //     'tanggal_transaksi <=', DATE($date['date_akhir'])
-                //     );
                 $where['DATE(tgl_transaksi) >='] = $date['date_awal'];
                 $where['DATE(tgl_transaksi) <='] = $date['date_akhir'];
             }
-            // $val = $this->tbl_trans->_get_query_select($where);
-            $history = $this->tbl_trans->get_all($where);
             $history = $this->tbl_vtransaksi->v_get($where);
-
-            echo "<pre>";
-            print_r($history);
-            echo "</pre>";
 
             $this->template->set_layout('default')
             ->build('/partials/history/main',
@@ -102,7 +79,6 @@ class History extends MY_Controller
                     )
                 );
         }
-
     }
 
 

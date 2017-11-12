@@ -6,7 +6,8 @@ class Home extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Table_trans_model', 'tbl_trans');
+        // $this->load->model('Table_trans_model', 'tbl_trans');
+        $this->load->model('Table_view_transaksi_model', 'tbl_vtransaksi');
         if (empty($this->session->userdata('username'))) {
             redirect('auth/login','refresh');
         }
@@ -18,7 +19,7 @@ class Home extends MY_Controller {
     }
     public function index()
     {
-        $data_user = $this->_get_user_rekening_data();
+        $data_user = $this->_get_udata();
         $history = $this->h_get_last_trans();
         $this->template->set_layout('default')
             ->build('/partials/home/main', array(
@@ -28,13 +29,22 @@ class Home extends MY_Controller {
                     );
     }
 
-    /***
-        function untuk mengambil 10 data transaksi terakhir
-    */
+
     public function h_get_last_trans()
     {
-        $data = $this->_get_user_rekening_data();
-        return $this->tbl_trans->get_last_ten($data[0]->no_rekening);   
+        $data = $this->_get_udata();
+        $where = array(
+            'rek_asal' => $data[0]->no_rekening
+        );
+        return $this->tbl_vtransaksi->v_get($where, 10, 0);
+    }
+
+    public function new_func()
+    {
+        echo "<pre>";
+        print_r($data = $this->get_udata());
+        echo "</pre>";
+
     }
 
 }

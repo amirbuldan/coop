@@ -14,12 +14,12 @@ class Setting extends MY_Controller
         $this->template->title('Setting');
         $this->template->set_partial('navbar', 'partials/navbar');
         $this->template->set_partial('header', 'partials/setting/header');
-        
+
     }
 
     public function index()
     {
-        $datauser = $this->_get_user_rekening_data();
+        $datauser = $this->_get_udata();
         $this->template->set_layout('default');
         $this->template->build('partials/setting/main', array('data' => $datauser));
 
@@ -27,8 +27,8 @@ class Setting extends MY_Controller
 
     public function profil($param = null)
     {
-        $datauser = $this->_get_user_rekening_data();
-        $this->template->build('partials/setting/profileForm', 
+        $datauser = $this->_get_udata();
+        $this->template->build('partials/setting/profileForm',
                 array(
                     'data' => $datauser,
                     )
@@ -37,7 +37,7 @@ class Setting extends MY_Controller
 
     public function password($param = null)
     {
-        $datauser = $this->_get_user_rekening_data();
+        $datauser = $this->_get_udata();
         $this->template->set_layout('default');
         $this->template->build('partials/setting/passwordForm',
             array(
@@ -78,9 +78,9 @@ class Setting extends MY_Controller
         $old = $this->input->post('oldpassword');
         $new = $this->input->post('newpassword');
         $confnew =  $this->input->post('confirmnewpassword');
-        $this->decrypt( $userdata[0]->password);
-        
-        if ($old !== $this->decrypt($userdata[0]->password)) {
+        sha256_decrypt( $userdata[0]->password);
+
+        if ($old !== sha256_decrypt($userdata[0]->password)) {
             $this->session->set_flashdata('error', 'password lama anda salah');
             redirect('setting/password','refresh');
         }
@@ -93,7 +93,7 @@ class Setting extends MY_Controller
                 echo "password berhasil diubah";
                 $data = array(
                     'update' => array(
-                        'password' => $this->encrypt($new),
+                        'password' => sha256_encrypt($new),
                     ),
                     'where' => array(
                         'id_user' => $userdata[0]->id_user,
@@ -108,34 +108,7 @@ class Setting extends MY_Controller
                 }
             }
         }
-        
+
     }
 
-    public function encrypt($plaintext)
-    {
-        $this->encryption->initialize(array(
-            'chiper' => 'aes-256',
-            'mode' => 'ctr',
-            // 'key' => $this->config->item('encryption_key'),
-        ));
-
-        return $this->encryption->encrypt($plaintext);
-    }
-
-    public function decrypt($encrypttext)
-    {
-        $this->encryption->initialize(array(
-            'chiper' => 'aes-256',
-            'mode' => 'ctr',
-            // 'key' => $this->config->item('encryption_key'),
-        ));
-
-        return $this->encryption->decrypt($encrypttext);
-    }
-
-    public function cek_password()
-    {
-        $data = $this->_get_user_data();
-        echo $this->decrypt($data[0]->password);
-    }
 }

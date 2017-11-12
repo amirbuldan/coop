@@ -5,7 +5,6 @@ class History extends MY_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Table_trans_model', 'tbl_trans');
         $this->load->model('Table_view_transaksi_model', 'tbl_vtransaksi');
 
         $this->template->title('History');

@@ -17,7 +17,7 @@
           </thead>
           <tbody>
 
-			<?php foreach ($trans as $value): ?>
+			<?php foreach ($trans[0] as $value): ?>
 				<tr>
 	              <td><?= mdate("%d/%m/%Y" ,mysql_to_unix($value->tgl_transaksi)); ?></td>
 	              <td><?= $value->jenis; ?></td>

@@ -16,8 +16,7 @@ class History extends MY_Controller
 
     public function index()
     {
-
-        $data_user = $this->_get_user_rekening_data();
+        $data_user = $this->_get_udata();
         $where = array(
             'rek_asal' =>$data_user[0]->no_rekening
             );
@@ -32,20 +31,10 @@ class History extends MY_Controller
 
     }
 
-    /***
-    * function untuk mengambil semua data transaksi
-    * @params $where berisi no_rekening
-    * @return mengembalikan data history transaksi dalam bentuk object
-    */
-    public function h_get_all_trans($where)
-    {
-        $data = $this->tbl_trans->get_all($where);
-        return $data;
-    }
 
     public function sort()
     {
-        $data_user = $this->_get_user_rekening_data();
+        $data_user = $this->_get_udata();
         $where = array(
             'rek_asal' =>$data_user[0]->no_rekening
             );

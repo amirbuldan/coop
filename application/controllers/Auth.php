@@ -6,6 +6,7 @@ class Auth extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Table_user_model', 'tbl_user');
+        $this->load->helper('sha256_helper');
     }
 
     public function login()
@@ -22,43 +23,25 @@ class Auth extends CI_Controller {
 
         $data = array(
             'username' => $username,
-            // 'password' => $password,
         );
 
         $chk = $this->tbl_user->get($data);
-
-        if ($this->decrypt($chk[0]->password) == $password) {
+        
+        if (sha256_decrypt($chk[0]->password) == $password) {
 
             $array = array(
                 'username' => $chk[0]->username
             );
             $this->session->set_userdata( $array );
             redirect('','refresh');
-
         }
 
         else {
             $this->session->set_flashdata('error', 'Login Gagal');
             redirect('auth/login','refresh');
         }
-        // echo "<pre>";
-        // var_dump($chk);
-        // echo "</pre>";
-
 
     }
-
-    public function decrypt($encrypttext)
-    {
-        $this->encryption->initialize(array(
-            'chiper' => 'aes-256',
-            'mode' => 'ctr',
-            // 'key' => $this->config->item('encryption_key'),
-        ));
-
-        return $this->encryption->decrypt($encrypttext);
-    }
-
     public function logout()
     {
         $this->session->sess_destroy();

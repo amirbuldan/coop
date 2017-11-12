@@ -6,7 +6,6 @@ class Home extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-        // $this->load->model('Table_trans_model', 'tbl_trans');
         $this->load->model('Table_view_transaksi_model', 'tbl_vtransaksi');
         if (empty($this->session->userdata('username'))) {
             redirect('auth/login','refresh');

@@ -14,7 +14,7 @@ class Simulasi extends MY_Controller
         $this->load->model('Table_rekening_model', 'tbl_rekening');
         $this->load->model('Table_view_transaksi_model', 'tbl_vtransaksi');
 
-        $this->userData = $this->_get_user_rekening_data();
+        $this->userData = $this->_get_udata();
 
         $this->template->title('Simulasi');
         $this->template->set_partial('navbar','/partials/navbar' );
@@ -26,7 +26,7 @@ class Simulasi extends MY_Controller
     public function index()
     {
 
-        $data_user = $this->_get_user_rekening_data();
+        $data_user = $this->_get_udata();
 
         $this->template->set_layout('default')
             ->build('partials/simulasi/main',
@@ -188,9 +188,6 @@ class Simulasi extends MY_Controller
 
             $this->tbl_msg->fake_insert($data);
 
-            // echo "<pre>";
-            // print_r($data);
-            // echo "</pre>";
     }
 
     public function _getUserData()

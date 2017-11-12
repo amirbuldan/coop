@@ -13,32 +13,11 @@ class MY_Controller extends CI_Controller{
             redirect('auth/login','refresh');
         }
 
-        $this->load->model('Table_transaksi_model', 'tbl_transaksi');
         $this->load->model('Table_user_model', 'tbl_user');
         $this->load->model('Table_messages_model', 'tbl_msg');
         $this->load->model('Table_rekening_model', 'tbl_rekening');
-    }
-
-    public function _encrypt($plaintext)
-    {
-        $this->encryption->initialize(array(
-            'chiper' => 'aes-256',
-            'mode' => 'ctr',
-            // 'key' => $this->config->item('encryption_key'),
-        ));
-
-        return $this->encryption->encrypt($plaintext);
-    }
-
-    public function _decrypt($encrypttext)
-    {
-        $this->encryption->initialize(array(
-            'chiper' => 'aes-256',
-            'mode' => 'ctr',
-            // 'key' => $this->config->item('encryption_key'),
-        ));
-
-        return $this->encryption->decrypt($encrypttext);
+        $this->load->model('Table_view_user_model', 'tbl_vuser');
+        $this->load->helper('sha256_helper');
     }
 
     public function _get_user_data()
@@ -50,20 +29,20 @@ class MY_Controller extends CI_Controller{
         return $userdata;
     }
 
-    public function _get_rekening_data($id)
+    public function _get_rekening_data($id_user)
     {
         $where = array(
-            'id_user' => $id,
+            'id_user' => $id_user,
         );
-
         return $this->tbl_rekening->get_rekening_user($where);
     }
 
-    public function _get_user_rekening_data()
+    public function _get_udata()
     {
-        $data_user = $this->_get_user_data();
-        return $this->tbl_user->get_r_rekening($data_user[0]->id_user);
+        $data = array(
+            'username' => $this->session->userdata('username'),
+        );
+        return $this->tbl_vuser->get($data);
     }
 
 }
-

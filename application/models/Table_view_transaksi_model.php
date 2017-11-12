@@ -4,13 +4,14 @@ class Table_view_transaksi_model extends CI_Model {
 
     private $table = 'view_transaksi';
 
-    public function v_get($where)
+    public function v_get($where, $limit=null, $offset=null)
     {
         $data = $this->db->select('*')
             ->from($this->table)
             ->where($where);
         $query = $this->db->get_compiled_select('', FALSE);
         $this->db->order_by('tgl_transaksi','DESC');
+        $this->db->limit($limit, $offset);
         $result = $this->db->get()
             ->result();
 

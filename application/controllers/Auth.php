@@ -11,7 +11,6 @@ class Auth extends CI_Controller {
 
     public function login()
     {
-
         // validation
         $this->load->view('login');
     }
@@ -26,7 +25,7 @@ class Auth extends CI_Controller {
         );
 
         $chk = $this->tbl_user->get($data);
-        
+
         if (sha256_decrypt($chk[0]->password) == $password) {
 
             $array = array(
